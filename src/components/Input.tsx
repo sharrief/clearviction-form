@@ -36,16 +36,17 @@ export default function Input({
   required, invalid, invalidMessage }: InputProps) {
   return (
     <div>
-      {label &&<label htmlFor="company-website" className="block text-sm font-medium leading-6 text-gray-900">
+      {label &&<label data-testid="Input-label" htmlFor="company-website" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
         {label}
       </label>}
       <div className="relative mt-2">
         <div className={`flex rounded-md shadow-sm ring-1 ring-inset ${invalid ? 'ring-red-500' : 'ring-gray-300'} focus-within:ring-2 focus-within:ring-inset ${invalid ? 'focus:ring-red-500' : 'focus:ring-neutral-600'} sm:max-w-md`}>
-          {prefix && <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">{prefix}</span>}
+          {prefix && <span data-testid="Input-prefix" className="flex select-none items-center pl-3 text-gray-500 dark:text-white sm:text-sm">{prefix}</span>}
           <input
+            data-testid="Input-input"
             name={name}
             type={type}
-            className={`block flex-1 border-0 bg-transparent py-1.5 ${prefix ? 'pl-0':'pl-2'} text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"`}
+            className={`block flex-1 border-0 bg-transparent py-1.5 ${prefix ? 'pl-0':'pl-2'} text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"`}
             value={value}
             onChange={({ target: { value } }) => onChange(value)}
             required={required}
@@ -54,12 +55,12 @@ export default function Input({
           />
         </div>
         {invalid &&
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <div data-testid="Input-errorIcon" className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" />
           </div>}
       </div>
       {invalidMessage &&
-        <p className="mt-2 text-sm text-red-600" id="email-error">
+        <p data-testId="Input-errorMessage" className="mt-2 text-sm text-red-600" id="email-error">
           {invalidMessage}
         </p>}
     </div>
