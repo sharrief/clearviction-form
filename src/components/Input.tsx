@@ -12,6 +12,8 @@ export interface InputProps {
   prefix?: string;
   /** The current value of the input */
   value: string;
+  /** Whether the control is disabled */
+  disabled: boolean;
   /** The type of the input element */
   type: 'email' | 'text';
   /** The handler for changes to the input value */
@@ -29,7 +31,7 @@ export interface InputProps {
  * @param {InputProps} props The properties for the Input component. See {@link InputProps}
  */
 export default function Input({
-  name, label, prefix,
+  name, label, prefix, disabled,
   value, type, onChange,
   required, invalid, invalidMessage }: InputProps) {
   return (
@@ -48,6 +50,7 @@ export default function Input({
             onChange={({ target: { value } }) => onChange(value)}
             required={required}
             aria-invalid={invalid}
+            disabled={disabled}
           />
         </div>
         {invalid &&
