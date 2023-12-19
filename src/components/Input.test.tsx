@@ -40,14 +40,22 @@ describe('Input component', () => {
     expect(screen.queryByTestId('Input-errorIcon')).toBeNull();
     expect(screen.queryByTestId('Input-errorMessage')).toBeNull();
   })
-  it('shows error icon', async () => {
+  it('shows invalid message', async () => {
     render(<Input {...props} invalidMessage={'Invalid input'} />);
     expect(screen.getByTestId('Input-label')).toHaveTextContent(props.label!)
     expect(screen.getByTestId('Input-input')).toHaveValue('');
     expect(screen.queryByTestId('Input-prefix')).toBeNull();
-    expect(screen.queryByTestId('Input-errorIcon')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('Input-errorIcon')).toBeNull();
     expect(screen.queryByTestId('Input-errorMessage')).toBeInTheDocument();
     expect(screen.queryByTestId('Input-errorMessage')).toHaveTextContent('Invalid input');
+  })
+  it('shows invalid icon', async () => {
+    render(<Input {...props} invalid={true} />);
+    expect(screen.getByTestId('Input-label')).toHaveTextContent(props.label!)
+    expect(screen.getByTestId('Input-input')).toHaveValue('');
+    expect(screen.queryByTestId('Input-prefix')).toBeNull();
+    expect(screen.queryByTestId('Input-errorIcon')).toBeInTheDocument();
+    expect(screen.queryByTestId('Input-errorMessage')).toBeNull();
   })
   it('can be disabled', async () => {
     render(<Input {...props} disabled={true} />);
@@ -55,7 +63,7 @@ describe('Input component', () => {
     expect(screen.getByTestId('Input-input')).toHaveValue('');
     expect(screen.getByTestId('Input-input')).toBeDisabled();
     expect(screen.queryByTestId('Input-prefix')).toBeNull();
-    expect(screen.queryByTestId('Input-errorIcon')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('Input-errorMessage')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('Input-errorIcon')).toBeNull();
+    expect(screen.queryByTestId('Input-errorMessage')).toBeNull();
   })
 })
