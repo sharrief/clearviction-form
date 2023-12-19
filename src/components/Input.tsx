@@ -44,6 +44,7 @@ export default function Input({
           {prefix && <span data-testid="Input-prefix" className="flex select-none items-center pl-3 text-gray-500 dark:text-white sm:text-sm">{prefix}</span>}
           <input
             data-testid="Input-input"
+            aria-label={label}
             name={name}
             type={type}
             className={`block flex-1 border-0 bg-transparent py-1.5 ${prefix ? 'pl-0':'pl-2'} text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"`}
@@ -60,7 +61,7 @@ export default function Input({
           </div>}
       </div>
       {invalidMessage &&
-        <p data-testId="Input-errorMessage" className="mt-2 text-sm text-red-600" id="email-error">
+        <p data-testid="Input-errorMessage" className="mt-2 text-sm text-red-600" id="email-error">
           {invalidMessage}
         </p>}
     </div>
